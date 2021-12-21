@@ -4,12 +4,19 @@ import time
 import urllib.request
 
 class start:
-    def __init__(self,keyword,limit):
+    def __init__(self,keyword,limit,path):
         self.keyWords = keyword         #키워드 입력
         self.limit = limit                  #사진 개수 제한
+        self.path = path
 
     def active(self):
-        driver = webdriver.Chrome(executable_path="selenium\chromedriver.exe")
+        
+        options = webdriver.ChromeOptions()
+        options.add_experimental_option("prefs", {"download.default_directory": self.path})
+        options.add_argument('headless')
+        options.add_argument('disable-gpu')    # GPU 사용 안함
+        options.add_argument('lang=ko_KR')    # 언어 설정
+        driver = webdriver.Chrome(executable_path="selenium\chromedriver.exe", options=options)
         driver.get("https://www.google.co.kr/imghp?hl=ko&tab=wi&authuser=0&ogbl")
         elem = driver.find_element_by_name("q")
         elem.send_keys(self.keyWords)
@@ -50,3 +57,4 @@ class start:
                 pass
 
         driver.close()
+        
