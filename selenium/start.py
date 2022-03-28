@@ -51,7 +51,7 @@ class start:
                 opener=urllib.request.build_opener()
                 opener.addheaders=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1941.0 Safari/537.36')]
                 urllib.request.install_opener(opener)
-                urllib.request.urlretrieve(imgUrl,self.keyWords + str(count+1) + ".jpg")
+                urllib.request.urlretrieve(imgUrl,self.path + "/" + self.keyWords + str(count+1) + ".jpg")
                 count = count + 1
             except:
                 pass
